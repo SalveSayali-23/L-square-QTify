@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
-import { ReactComponent as SearchIcon } from "../../assets/searchicon.svg";
+import SearchIcon from "../../assets/searchicon.svg";
 
 const SearchBar = () => {
   return (
@@ -10,7 +10,7 @@ const SearchBar = () => {
       </div>
       <div>
         <button className={styles.searchButton} type="submit">
-          <SearchIcon />
+          <img src={SearchIcon} alt="Icon" />
         </button>
       </div>
     </form>
