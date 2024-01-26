@@ -8,7 +8,7 @@ import SearchBar from "../Search/SearchBar";
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <Logo />
+      <Logo id={styles.logo}/>
       <SearchBar placeholder="Search a album of your choice" />
       <Button text="Give Feedback" />
     </nav>
