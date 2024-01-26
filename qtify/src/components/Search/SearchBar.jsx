@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./SearchBar.module.css";
 import SearchIcon from "../../assets/searchicon.svg";
 
-const SearchBar = () => {
+const SearchBar = ({placeholder}) => {
   return (
     <form className={styles.wrapper}>
       <div>
-        <input type="text" />
+        <input className={styles.searchbar} placeholder={placeholder} />
       </div>
       <div>
         <button className={styles.searchButton} type="submit">

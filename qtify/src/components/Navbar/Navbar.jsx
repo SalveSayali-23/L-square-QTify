@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <Logo />
-      <SearchBar />
+      <SearchBar placeholder="Search a album of your choice" />
       <Button text="Give Feedback" />
     </nav>
   );
