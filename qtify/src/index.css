@@ -16,7 +16,7 @@
   margin:0;
 }
 body{
-  font-size: "poppins";
+  font-family: "poppins";
   line-height: 1.5;
   background-color: var(--color-black);
   color:var(--color-white);
