@@ -22,3 +22,10 @@ body{
   color:var(--color-white);
   overflow-x: hidden;
 }
+
+input,
+button,
+textarea,
+select{
+  font: inherit;
+}
