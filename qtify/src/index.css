@@ -29,3 +29,9 @@ textarea,
 select{
   font: inherit;
 }
+
+img,svg {
+  /* using reset css, defualt img is inline element so we're changing to block element with max width so it doesn't break*/
+  display: block;
+  max-width: 100%;
+}

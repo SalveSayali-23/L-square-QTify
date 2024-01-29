@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import styles from "./SearchBar.module.css";
 import SearchIcon from "../../assets/searchicon.svg";
 
-const SearchBar = ({placeholder}) => {
+// eslint-disable-next-line react/prop-types
+const SearchBar = ({ placeholder }) => {
   return (
     <form className={styles.wrapper}>
       <div>

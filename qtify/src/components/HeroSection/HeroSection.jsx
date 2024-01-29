@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import headphone from "../../assets/headphone.png";
 import styles from "./Hero.module.css";
