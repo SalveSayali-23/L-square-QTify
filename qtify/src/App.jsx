@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
 import { fetchTopAlbumsData } from "./components/api/api";
-
 import Section from "./components/Section/Section";
+import styles from "./App.module.css"
 
 const App = () => {
   const [albumsData, setAlbumsData] = useState([]);
@@ -33,7 +33,9 @@ const App = () => {
       ))
       }  */}
       {/* instead of mappibg card data for every section, lets create a section component and render it directly here */}
+      <div className={styles.sectionWrapper}>
       <Section data={albumsData} title="Top Albums" type="album" />
+      </div>
     </div>
   );
 };
