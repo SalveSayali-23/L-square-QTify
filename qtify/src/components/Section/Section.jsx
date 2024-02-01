@@ -43,8 +43,9 @@ const Section = ({ data, title, type }) => {
     const res = data.filter((item) => item.genre.key === key);
     setFilterData(res);
   };
+  const filteredData = type === "songs" ? filterData : data;
+  console.log(filteredData);
 
-  const filteredData = type === "song" ? filterData : data;
   useEffect(() => {
     generateSongsData(value);
 
