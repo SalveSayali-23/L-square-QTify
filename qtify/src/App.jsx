@@ -6,7 +6,7 @@ import HeroSection from "./components/HeroSection/HeroSection";
 import {
   fetchTopAlbumsData,
   fetchNewAlbumsData,
-  fetchSongsData
+  fetchSongsData,
 } from "./components/api/api";
 import Section from "./components/Section/Section";
 
@@ -16,8 +16,6 @@ const App = () => {
   const [albumsData, setAlbumsData] = useState([]);
   const [newAlbumsData, setNewAlbumsData] = useState([]);
   const [songsData, setSongsData] = useState([]);
-  
-
 
   const generateTopAlbums = async () => {
     try {
@@ -64,10 +62,14 @@ const App = () => {
       <div className={styles.sectionWrapper}>
         <Section data={albumsData} title="Top Albums" type="album" />
         <Section data={newAlbumsData} title="New Albums" type="album" />
-       <hr  style={{ margin: '2.5rem 0', border: '1px solid rgba(52, 201, 75, 1)' }}/>
+        <hr
+          style={{
+            margin: "2.5rem 0",
+            border: "1px solid rgba(52, 201, 75, 1)",
+          }}
+        />
         <Section data={songsData} title="Songs" type="songs" />
       </div>
-      
     </div>
   );
 };

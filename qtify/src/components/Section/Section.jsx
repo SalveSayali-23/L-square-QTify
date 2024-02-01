@@ -22,7 +22,7 @@ const Section = ({ data, title, type }) => {
     // this will give new value(0,1,2,3,4) based on the tab change
 
     setValue(newValue);
-    // generateSongsData(newValue);
+    
     console.log(newValue);
   };
 
@@ -37,7 +37,7 @@ const Section = ({ data, title, type }) => {
       key = "pop";
     } else if (value === 3) {
       key = "jazz";
-    } else if (value === 4) {
+    } else {
       key = "blues";
     }
     const res = data.filter((item) => item.genre.key === key);
