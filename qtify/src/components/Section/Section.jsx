@@ -1,18 +1,56 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./Section.module.css";
 import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
+import BasicTabs from "../FilterTabs/FilterTabs";
 
 const Section = ({ data, title, type }) => {
   // Declaring a state to handle Carousel visibility.
   const [carouselToggle, setCarouselToggle] = useState(true);
+  const [filterData, setFilterData] = useState(data);
 
   const handleToggle = () => {
     setCarouselToggle(!carouselToggle);
   };
+
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    // this will give new value(0,1,2,3,4) based on the tab change
+
+    setValue(newValue);
+    // generateSongsData(newValue);
+    console.log(newValue);
+  };
+
+  const generateSongsData = (value) => {
+    let key;
+    if (value === 0) {
+      setFilterData(data);
+      return;
+    } else if (value === 1) {
+      key = "rock";
+    } else if (value === 2) {
+      key = "pop";
+    } else if (value === 3) {
+      key = "jazz";
+    } else if (value === 4) {
+      key = "blues";
+    }
+    const res = data.filter((item) => item.genre.key === key);
+    setFilterData(res);
+  };
+
+  const filteredData = type === "song" ? filterData : data;
+  useEffect(() => {
+    generateSongsData(value);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
   return (
     <div>
       <div className={styles.header}>
@@ -21,6 +59,9 @@ const Section = ({ data, title, type }) => {
           {!carouselToggle ? "Collapse" : "Show all"}
         </h4>
       </div>
+      {type === "songs" ? (
+        <BasicTabs value={value} handleChange={handleChange} />
+      ) : null}
       {data.length === 0 ? (
         <CircularProgress />
       ) : (
@@ -35,7 +76,7 @@ const Section = ({ data, title, type }) => {
           ) : (
             // In collapse stage we'll  show carousel
             <Carousel
-              data={data}
+              data={filteredData}
               renderComponent={(data) => <Card data={data} type={type} />}
             />
           )}

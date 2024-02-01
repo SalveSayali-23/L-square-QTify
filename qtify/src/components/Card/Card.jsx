@@ -28,6 +28,28 @@ const Card = ({ data, type }) => {
             </div>
           </Tooltip>
         );
+      } case "songs": {
+        const { image, likes, title } = data;
+        return (
+          
+            <div className={styles.wrapper}>
+              <div className={styles.card}>
+                <img src={image} alt="song" loading="lazy"/>
+                <div className={styles.banner}>
+                  <Chip
+                    label={`${likes} Likes`}
+                    size="small"
+                    className={styles.chip}
+                  />
+                </div>
+              </div>
+            
+           
+            <div className={styles.titleWrapper}>
+              <p>{title}</p>
+            </div>
+            </div> 
+        );
       }
       default:
         return <></>;

@@ -3,13 +3,21 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
-import { fetchTopAlbumsData , fetchNewAlbumsData} from "./components/api/api";
+import {
+  fetchTopAlbumsData,
+  fetchNewAlbumsData,
+  fetchSongsData
+} from "./components/api/api";
 import Section from "./components/Section/Section";
-import styles from "./App.module.css"
+
+import styles from "./App.module.css";
 
 const App = () => {
   const [albumsData, setAlbumsData] = useState([]);
   const [newAlbumsData, setNewAlbumsData] = useState([]);
+  const [songsData, setSongsData] = useState([]);
+  
+
 
   const generateTopAlbums = async () => {
     try {
@@ -28,10 +36,19 @@ const App = () => {
       console.log(e);
     }
   };
+  const generateSongs = async () => {
+    try {
+      const data = await fetchSongsData();
+      setSongsData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     generateTopAlbums();
-    generateNewAlbums()
+    generateNewAlbums();
+    generateSongs();
   }, []);
 
   return (
@@ -45,9 +62,12 @@ const App = () => {
       }  */}
       {/* instead of mappibg card data for every section, lets create a section component and render it directly here */}
       <div className={styles.sectionWrapper}>
-      <Section data={albumsData} title="Top Albums" type="album" />
-      <Section data={newAlbumsData} title="New Albums" type="album" />
+        <Section data={albumsData} title="Top Albums" type="album" />
+        <Section data={newAlbumsData} title="New Albums" type="album" />
+       <hr  style={{ margin: '2.5rem 0', border: '1px solid rgba(52, 201, 75, 1)' }}/>
+        <Section data={songsData} title="Songs" type="songs" />
       </div>
+      
     </div>
   );
 };

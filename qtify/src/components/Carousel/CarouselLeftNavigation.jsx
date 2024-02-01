@@ -12,13 +12,13 @@ const CarouselLeftNavigation = () => {
       setIsBeginning(swiper.isBeginning);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBeginning]);
+  }, [swiper.isBeginning]);
 
   return (
-    <div >
+    <div>
       {!isBeginning ? (
-        <button className={styles.leftNavigation}
-          
+        <button
+          className={styles.leftNavigation}
           onClick={() => {
             swiper.slidePrev();
           }}

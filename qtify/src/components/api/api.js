@@ -21,3 +21,13 @@ export const fetchNewAlbumsData=async ()=>{
     console.log(e)
   }
 }
+
+export const fetchSongsData=async ()=>{
+  try{
+    const response=await axios.get(`${BackendEndpoint}/songs`);
+    console.log(response);
+    return response.data;
+  }catch(e){
+    console.log(e)
+  }
+}
