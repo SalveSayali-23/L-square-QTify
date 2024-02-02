@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Section.module.css";
 import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
@@ -22,7 +22,7 @@ const Section = ({ data, title, type }) => {
     // this will give new value(0,1,2,3,4) based on the tab change
 
     setValue(newValue);
-    
+    //generateSongsData(newValue)
     console.log(newValue);
   };
 
@@ -42,9 +42,11 @@ const Section = ({ data, title, type }) => {
     }
     const res = data.filter((item) => item.genre.key === key);
     setFilterData(res);
+    console.log(res);
   };
   const filteredData = type === "songs" ? filterData : data;
-  console.log(filteredData);
+  // console.log(filteredData);
+  console.log(filterData);
 
   useEffect(() => {
     generateSongsData(value);
