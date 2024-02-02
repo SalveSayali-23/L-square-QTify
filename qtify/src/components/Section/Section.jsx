@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect,useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./Section.module.css";
 import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
@@ -25,35 +25,23 @@ const Section = ({ data, title, type }) => {
     //generateSongsData(newValue)
     console.log(newValue);
   };
-  // const generateSongData = (key) => {
-  //   if (key === "all") {
-  //     setFilterData(data);
-  //   } else {
-  //     const res = data.filter((item) => item.genre.key === key);
-  //     setFilterData(res);
-  //   }
-  // };
 
-  // const filteredData = type === "songs" ? filterData : data;
+  const generateSongData = useCallback(
+    (key) => {
+      if (key === "all") {
+        setFilterData(data);
+      } else {
+        const res = data.filter((item) => item.genre.key === key);
+        setFilterData(res);
+      }
+    },
+    [data]
+  ); // Include data in the dependency array if it's used inside generateSongData
 
-  // useEffect(() => {
-  //   const genres = { 0: "all", 1: "rock", 2: "jazz", 3: "pop", 4: "blues" };
-  //   if (value >= 0 && value <= 4) {
-  //     generateSongData(genres[value]);
-  //   }
-  // }, [data, generateSongData, value]);
-  const generateSongData = useCallback((key) => {
-    if (key === 'all') {
-      setFilterData(data);
-    } else {
-      const res = data.filter((item) => item.genre.key === key);
-      setFilterData(res);
-    }
-  }, [data]); // Include data in the dependency array if it's used inside generateSongData
-  
-  const filteredData = type === 'song' ? filterData : data;
+  const filteredData = type === "songs" ? filterData : data;
+  console.log(filteredData);
   useEffect(() => {
-    const genres = { 0: 'all', 1: 'rock', 2: 'jazz', 3: 'pop', 4: 'blues' };
+    const genres = { 0: "all", 1: "rock", 2: "jazz", 3: "pop", 4: "blues" };
     if (value >= 0 && value <= 4) {
       generateSongData(genres[value]);
     }
