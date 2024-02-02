@@ -40,11 +40,12 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({  value, handleChange }) {
+export default function BasicTabs({ key , value, handleChange }) {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
+        key={key}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"

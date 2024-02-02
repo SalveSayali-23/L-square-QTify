@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import styles from "./Section.module.css";
 import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
@@ -25,34 +25,39 @@ const Section = ({ data, title, type }) => {
     //generateSongsData(newValue)
     console.log(newValue);
   };
+  // const generateSongData = (key) => {
+  //   if (key === "all") {
+  //     setFilterData(data);
+  //   } else {
+  //     const res = data.filter((item) => item.genre.key === key);
+  //     setFilterData(res);
+  //   }
+  // };
 
-  const generateSongsData = (value) => {
-    let key;
-    if (value === 0) {
+  // const filteredData = type === "songs" ? filterData : data;
+
+  // useEffect(() => {
+  //   const genres = { 0: "all", 1: "rock", 2: "jazz", 3: "pop", 4: "blues" };
+  //   if (value >= 0 && value <= 4) {
+  //     generateSongData(genres[value]);
+  //   }
+  // }, [data, generateSongData, value]);
+  const generateSongData = useCallback((key) => {
+    if (key === 'all') {
       setFilterData(data);
-      return;
-    } else if (value === 1) {
-      key = "rock";
-    } else if (value === 2) {
-      key = "pop";
-    } else if (value === 3) {
-      key = "jazz";
     } else {
-      key = "blues";
+      const res = data.filter((item) => item.genre.key === key);
+      setFilterData(res);
     }
-    const res = data.filter((item) => item.genre.key === key);
-    setFilterData(res);
-    console.log(res);
-  };
-  const filteredData = type === "songs" ? filterData : data;
-  // console.log(filteredData);
-  console.log(filterData);
-
+  }, [data]); // Include data in the dependency array if it's used inside generateSongData
+  
+  const filteredData = type === 'song' ? filterData : data;
   useEffect(() => {
-    generateSongsData(value);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+    const genres = { 0: 'all', 1: 'rock', 2: 'jazz', 3: 'pop', 4: 'blues' };
+    if (value >= 0 && value <= 4) {
+      generateSongData(genres[value]);
+    }
+  }, [generateSongData, value]);
 
   return (
     <div>
@@ -63,7 +68,7 @@ const Section = ({ data, title, type }) => {
         </h4>
       </div>
       {type === "songs" ? (
-        <BasicTabs value={value} handleChange={handleChange} />
+        <BasicTabs key={value} value={value} handleChange={handleChange} />
       ) : null}
       {data.length === 0 ? (
         <CircularProgress />
